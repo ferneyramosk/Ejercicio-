@@ -1,0 +1,50 @@
+Ejercio  Aprende a Programar desde Cero (Full Stack Jr. ) | Edición XXVI
+
+num =[float | int]
+
+def average_list(numbers: list[num])->list[num]:
+
+  averaged = []
+
+  #Al rescate centinela
+  preprocessed = [None] + numbers + [None]
+
+  #iterar con enumerate los numeros
+  for item, current in enumerate(preprocessed):
+
+  # Omitir none
+   if current is None:
+    continue
+
+  # Llamamos la funcion def get_indexes
+   indices = get_indexes(item)
+
+  # Llamamos la funcion get_values
+   values = get_values(indices, preprocessed)
+
+  # Se crea una lista y se ignora el none
+   values_sum = [valor for valor in values if valor is not None]
+
+  # Se evulua el promedio
+   promedio = sum(values_sum) / len(values_sum)
+   averaged.append(promedio)
+
+  return averaged
+
+
+
+def get_indexes(original_index: int)->list[int]:
+  # Me entrega 3 posiciones atra, actual, adealnte.
+  return [original_index - 1, original_index, original_index + 1]
+
+def get_values(indices: list[int], seq: list[None|float|int])->list[float|int]:
+  # Busca en la lista el valor en cada una.
+  return [seq[item] for item in indices]
+
+datos = [ 1, 2, 3]
+resultado = average_list(datos)
+print(resultado)
+
+datos= [ 2, 2, 2]
+resultado = average_list(datos)
+print(resultado)
